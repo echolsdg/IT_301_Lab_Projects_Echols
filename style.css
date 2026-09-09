@@ -17,36 +17,79 @@ ul ul ul {
 }
 
 /* 1. Headings */
-
+h1, h2 {
+  color:#2a52be;
+}
 
 
 /* 2. Force 'CSS' to stay uppercase */
-    
+span{
+    text-transform: uppercase;
+  }
 
 /* 3. Paragraph styling */
-    
+p {
+  line-height: 1.6;
+}  
    
 
 /* 4. Section borders */
-    
+section {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}    
 
 /* 5. List styling */
-
+li {
+  list-style-type: square;
+}
 
 /* Main list item colors */
-    
+section ul > li:nth-child(1) {
+  color: #2a52be;
+}
+
+section ul > li:nth-child(2) {
+  color: #228b22;
+} 
+
+section ul > li:nth-child(3) {
+  color: #dc143c;
+} 
 
 
 /* Sub-list */
- 
-
+section ul > ul > li:nth-child(1),
+section ul > ul > li:nth-child(3) {
+  color: #9400d3;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+ }
 /* Inner sub-list */
- 
+ section ul > ul > ul> li:nth-child(1) {
+  color: #ff8c00;
+  background-color: #fdf6e3;
+  font-size: 0.85em;
+ }
 
 /* Second violet item in sublist */
-
+section ul > ul> li:nth-child(3) {
+  color: #9400d3;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+ }
 
 /* Final main list item */
-   
-
+section ul > li:nth-child(5) {
+  color: #2a52be;
+ 
+}
 /* Footer */
+footer {
+  border: 4px double red;
+  border-radius: 8px;
+  width: fit-content;
+  margin: 20px auto;
+  background-color: #ffe606;
+  text-align: center;
+}
