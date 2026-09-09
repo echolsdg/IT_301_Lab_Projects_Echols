@@ -1,0 +1,11 @@
+li{
+    color:blue
+}
+
+#red{
+    color:red
+}
+
+li:nth-child(3){
+    color:green
+}
