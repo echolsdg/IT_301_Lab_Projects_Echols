@@ -2,24 +2,23 @@
     box-sizing:border-box;
 }
 
-
 body{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: lightgray;
     color:black;
-    margin: 0;
-    padding: 1em;
+    margin: 1.5px;
+    padding: 1px;
 }
 
 header{
-    background-color:lightslategrey;
+    background-color:lightslategray;
     color: black;
     text-align: center;
     padding: 30px;
 }
 
 header h1{
-    color:peachpuff;
+    color:whitesmoke;
     border-bottom: 2px solid black;
     padding-bottom: 10px;
     font-weight:500;
@@ -44,15 +43,15 @@ h2 {
     text-align: center;
 }
 
-.labs-intro {
-    color:peachpuff;
+#labs-intro {
+    color:whitesmoke;
     text-align: center;
     border-bottom: 2px solid black;
     padding-bottom: 10px;
 }
 
 p {
-    font-size:1.035em;
+    font: size 1.5px;;
     line-height: 1.6;
 }
 
@@ -60,7 +59,6 @@ img {
     display: block;
     margin: 20px auto;
     border-radius: 5px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
 }
 
 ul {
@@ -73,7 +71,3 @@ li{
     margin-bottom: 12px;
 }
 
-a:hover {
-    text-decoration:underline;
-
-}
