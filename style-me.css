@@ -51,7 +51,7 @@ h2 {
 }
 
 p {
-    font: size 1.5px;;
+    font: size 1.035px;;
     line-height: 1.6;
 }
 
@@ -71,3 +71,8 @@ li{
     margin-bottom: 12px;
 }
 
+#ab{
+    background-color: whitesmoke;
+    width: 300px;
+    color:whitesmoke;
+}
