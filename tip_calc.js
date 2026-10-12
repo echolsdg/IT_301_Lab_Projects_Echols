@@ -19,6 +19,6 @@ do {
 let bill = Number(promptValue);
 let tip = bill * 0.10;
 
-console.log(`For a bill of $${bill}, the tip should be $${tip.toFixed(2)}`);
+console.log(`For a bill of $${bill.toFixed(2)}, the tip should be $${tip.toFixed(2)}`);
 
-document.write(`For a bill of $${bill}, the tip should be $${tip}.`);
+document.write(`For a bill of $${bill.toFixed(2)}, the tip should be $${tip.toFixed(2)}`);
