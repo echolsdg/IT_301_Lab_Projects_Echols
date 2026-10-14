@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab11 - Events</title>
+
+
+    <style>
+
+        #box{
+            background-color: blue;
+            font-size: 1.2 em;
+            width: 300px;
+            padding: 10px;
+            color: black;
+            text-align: center;
+        }
+
+        #box:hover{
+            cursor: pointer;
+        }
+
+        #screen{
+            height:70vh;
+            width: 100dvh;
+            background-color: lightgray;
+            margin-top: 40px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+    <button id="box">Click Me! 😊</button>
+
+    <div id="screen"></div>
+
+    <p>Try to click the button and move your mouse over the gray area. Observe how the button changes color and text based on your interactions.</p>
+
+    <script>
+
+        const box = document.getElementById('box');
+        const screen = document.getElementById('screen');
+
+        box.addEventListener('mouseenter', function(event){
+            box.style.backgroundColor = 'yellow';
+            box.textContent = 'Do not click! 😠';
+        })
+
+         box.addEventListener('click', function(event){
+            box.style.backgroundColor = 'red';
+            box.textContent = 'Ouch!🤕';
+        })
+
+         box.addEventListener('mouseleave', function(event){
+            box.style.backgroundColor = 'lightgreen';
+            box.textContent = 'Phew!😌';
+        })
+
+         box.addEventListener('dblclick', function(event){
+            box.style.backgroundColor = 'pink';
+            box.textContent = 'Double Trouble!🤩';
+        })
+
+         screen.addEventListener('mousemove', function(event){
+            box.style.backgroundColor = 'lightblue';
+            box.textContent = 'I see you!👀';
+        })
+
+
+
+    </script>
+    
+</body>
+</html>
