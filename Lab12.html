@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(53, 183, 227);
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            width: 350px;
+            margin: auto;
+            padding: 25px;
+            border: 2px solid black;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Calculator</h1>
+
+        <p>Enter your name:</p>
+        <input type="text" id="name">
+        <button id="greetBtn">Greet</button>
+
+        <h2 id="greeting"></h2>
+
+        <p>Enter first number:</p>
+        <input type="number" id="num1">
+
+        <p>Enter second number:</p>
+        <input type="number" id="num2">
+
+        <h3>Choose an operation:</h3>
+
+        <input type="radio" name="operation" id="add">
+        <label for="add">Addition</label>
+
+        <input type="radio" name="operation" id="subtract">
+        <label for="subtract">Subtraction</label>
+
+        <br><br>
+
+        <input type="radio" name="operation" id="multiply">
+        <label for="multiply">Multiplication</label>
+
+        <input type="radio" name="operation" id="divide">
+        <label for="divide">Division</label>
+
+        <br><br>
+
+        <button id="calculateBtn">Calculate</button>
+        <button id="clearBtn">Clear</button>
+
+        <h2 id="result"></h2>
+
+    </div>
+
+    <script>
+
+        const nameBox = document.getElementById("name");
+        const greeting = document.getElementById("greeting");
+
+        const num1 = document.getElementById("num1");
+        const num2 = document.getElementById("num2");
+
+        const add = document.getElementById("add");
+        const subtract = document.getElementById("subtract");
+        const multiply = document.getElementById("multiply");
+        const divide = document.getElementById("divide");
+
+        const result = document.getElementById("result");
+
+        const greetBtn = document.getElementById("greetBtn");
+        const calculateBtn = document.getElementById("calculateBtn");
+        const clearBtn = document.getElementById("clearBtn");
+
+
+        function greet() {
+            let name = nameBox.value;
+
+            if (name === "") {
+                greeting.textContent = "Please enter your name";
+            } else {
+                greeting.textContent = "Greetings, " + name ;
+            }
+        }
+
+
+        function calculate() {
+
+            if (num1.value === "" || num2.value === "") {
+                result.textContent = "Please enter two numbers";
+                return;
+            }
+
+            let n1 = Number(num1.value);
+            let n2 = Number(num2.value);
+            let answer;
+
+            if (add.checked) {
+                answer = n1 + n2;
+            }
+            else if (subtract.checked) {
+                answer = n1 - n2;
+            }
+            else if (multiply.checked) {
+                answer = n1 * n2;
+            }
+            else if (divide.checked) {
+
+                if (n2 === 0) {
+                    result.textContent = "Cannot divide by zero";
+                    return;
+                }
+
+                answer = n1 / n2;
+            }
+            else {
+                result.textContent = "Please choose an operation";
+                return;
+            }
+
+            result.textContent = "Result: " + answer;
+        }
+
+        function clearScreen() {
+            nameBox.value = "";
+            num1.value = "";
+            num2.value = "";
+
+            greeting.textContent = "";
+            result.textContent = "";
+
+            add.checked = false;
+            subtract.checked = false;
+            multiply.checked = false;
+            divide.checked = false;
+        }
+
+
+        greetBtn.addEventListener("click", greet);
+        calculateBtn.addEventListener("click", calculate);
+        clearBtn.addEventListener("click", clearScreen);
+
+    </script>
+
+</body>
+</html>
