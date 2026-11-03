@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts </title>
+
+    <style>
+       body {
+          background-color: #f0f2f5;
+          font-family: Helvetica, Arial, sans-serif;
+       }
+
+       form {
+          min-height: 180px;
+       }
+
+       article, form {
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+          padding: 12px 16px;
+          margin-bottom: 16px;
+          max-width: 680px;
+          margin-left: auto;
+          margin-right: auto;
+       }
+
+       h2 {
+          color: #050505;
+          font-size: 0.9375rem;
+          font-weight: 600;
+          margin: 0 0 4px 0;
+       }
+
+       p {
+          color: #050505;
+          font-size: 0.9375rem;
+          line-height: 1.3333;
+          margin: 8px 0 0 0;
+       }
+    </style>
+</head>
+
+<body>
+<h1> Welcome to my Posts page! </h1>
+
+    <form action="#">
+
+        <label for="userID">Select User:</label>
+        <select id="userID">
+            <option value="">--Please choose an option--</option>
+            <option value="1">User 1</option>
+            <option value="2">User 2</option>
+            <option value="3">User 3</option>
+            <option value="4">User 4</option>
+            <option value="5">User 5</option>
+            <option value="6">User 6</option>
+            <option value="7">User 7</option>
+        </select>
+
+        <button type="button" id="filterBtn">Filter</button>
+
+        <br><br>
+
+        <label for="displayUserID">Enter User ID:</label>
+        <input type="number" id="displayUserID" min="1" max="10">
+
+        <button type="button" id="displayUserBtn">Display User Posts</button>
+
+        <br><br>
+
+        <label for="postID">Enter Post ID:</label>
+        <input type="number" id="postID" min="1" max="100">
+
+        <button type="button" id="findBtn">Find</button>
+
+    </form>
+
+    <script>
+
+       
+// Task 1: Fetch posts from the API and store them in an array
+let posts = [];
+
+const getposts = async () => {
+    let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    posts = await response.json();
+    console.table(posts);
+
+    displayPosts(posts);
+};
+
+
+// Task 2: Display posts
+const displayPosts = (postsToDisplay) => {
+    for (let i = 0; i < postsToDisplay.length; i++) {
+        let article = document.createElement('article');
+
+        let title = document.createElement('h2');
+        title.textContent = postsToDisplay[i].title;
+
+        let postbody = document.createElement('p');
+        postbody.textContent = postsToDisplay[i].body;
+
+        article.appendChild(title);
+        article.appendChild(postbody);
+
+        let userID = document.createElement('p');
+        userID.textContent = "User ID: " + postsToDisplay[i].userId;
+        article.appendChild(userID);
+
+        let postID = document.createElement('p');
+        postID.textContent = "Post ID: " + postsToDisplay[i].id;
+        article.appendChild(postID);
+
+        document.body.appendChild(article);
+    }
+};
+
+
+// Task 3: Create a user filter
+let filterBtn = document.getElementById('filterBtn');
+
+filterBtn.addEventListener('click', () => {
+    let UserID = document.getElementById('userID').value;
+    filterPosts(UserID);
+});
+
+
+// Task 4: Filter posts by user
+const filterPosts = (UserID) => {
+    let filteredPosts = posts.filter(post => post.userId == UserID);
+    console.table(filteredPosts);
+};
+
+// Task 5: Display posts by User ID
+
+const displayUserPosts = (chosenUserId) => {
+    let filteredPosts = posts.filter(post => post.userId == chosenUserId);
+
+    document.querySelectorAll('article').forEach((article) => {
+        article.remove();
+    });
+
+    let dupeMessage = document.getElementById('notFoundMessage');
+
+    if (dupeMessage) {
+        dupeMessage.remove();
+    }
+
+    displayPosts(filteredPosts);
+};
+
+let displayUserBtn = document.getElementById('displayUserBtn');
+
+displayUserBtn.addEventListener('click', () => {
+    let chosenUserId = document.getElementById('displayUserID').value;
+    displayUserPosts(chosenUserId);
+});
+
+
+//Task 6: Find a post by Post ID
+const findPost = (chosenPostId) => {
+    let matchedPost = posts.find(post => post.id == chosenPostId);
+
+    document.querySelectorAll('article').forEach((article) => {
+        article.remove();
+   });
+
+
+    let dupeMessage = document.getElementById('notFoundMessage');
+    if (dupeMessage) {
+        dupeMessage.remove();
+    };
+
+    if (matchedPost) {
+        displayPosts([matchedPost]);
+    }
+
+    else{
+        let message = document.createElement('p');
+        message.id = 'notFoundMessage';
+        message.textContent = "Post not found.";
+        document.body.appendChild(message);
+    };
+
+};
+
+let findBtn = document.getElementById('findBtn');
+
+findBtn.addEventListener('click', () => {
+    let chosenPostId = document.getElementById('postID').value;
+    findPost(chosenPostId);
+});
+
+
+
+// Run the function to retrieve posts
+getposts();
+
+    </script>
+
+</body>
+</html>
