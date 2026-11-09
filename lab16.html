@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab16</title>
+
+    <style>
+        .rules {
+            display: none;
+        }
+
+        .rule {
+            color: red;
+        }
+
+        .rule.valid {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="registration">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
+
+        <div class="rules" id="password-rules">
+            <div id="rule-length" class="rule">✖ At least 6 characters</div>
+            <div id="rule-special" class="rule">✖ Must include a special character (!@#$...)</div>
+            <div id="rule-uppercase" class="rule">✖ Must include an uppercase letter (A-Z)</div>
+        </div>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <script>
+        let form = document.getElementById("registration");
+        let passwordInput = document.getElementById("password");
+
+        passwordInput.addEventListener("input", function() {
+
+            let password = passwordInput.value;
+            let validLength = password.length >= 6;
+            let validSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            let validUppercase = /[A-Z]/.test(password);
+
+            document.getElementById("rule-length").classList.toggle("valid", validLength);
+            document.getElementById("rule-special").classList.toggle("valid", validSpecial);
+            document.getElementById("rule-uppercase").classList.toggle("valid", validUppercase);
+
+            document.getElementById("password-rules").style.display = "block";
+
+        });
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            if (username === "" || email === "" || password === "") {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            alert("Registration successful!");
+            form.reset();
+
+        });
+    </script>
+
+</body>
+</html>
